@@ -1,18 +1,14 @@
 "use sctrict";
 
 import choiceClub from './modules/choiceClub';
-import freeVisitForm from './modules/freeVisitForm';
 import call from './modules/call';
 //import sendForm from './modules/sendForm';
 import fixedGift from './modules/fixedGift';
-import wrapper from './modules/wrapper';
 import mainSlider from './modules/mainSlider';
-import popupMenu from './modules/popupMenu';
+import scrollDocument from './modules/scrollDocument';
 
 //выбор клуба
 choiceClub();
-//Записаться набесплатный визит
-freeVisitForm();
 //Перезвоните мне
 call();
 //отправка данных
@@ -21,7 +17,4 @@ call();
 fixedGift();
 //слайдер в меню
 mainSlider();
-
-wrapper();
-
-popupMenu();
+scrollDocument();
