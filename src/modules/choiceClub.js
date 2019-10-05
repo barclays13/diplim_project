@@ -9,7 +9,7 @@ const choiceClub = () => {
             return;
         } 
         if ( nameClubs.style.display = "none" ) {
-            nameClubs.style.display = "block";
+            nameClubs.removeAttribute("style");
         }
     });
 };

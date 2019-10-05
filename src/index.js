@@ -6,6 +6,7 @@ import call from './modules/call';
 import fixedGift from './modules/fixedGift';
 import mainSlider from './modules/mainSlider';
 import scrollDocument from './modules/scrollDocument';
+import popupMenu from './modules/popupMenu';
 
 //выбор клуба
 choiceClub();
@@ -17,4 +18,5 @@ call();
 fixedGift();
 //слайдер в меню
 mainSlider();
+popupMenu();
 scrollDocument();
