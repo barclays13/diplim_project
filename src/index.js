@@ -7,6 +7,7 @@ import call from './modules/call';
 import fixedGift from './modules/fixedGift';
 import wrapper from './modules/wrapper';
 import mainSlider from './modules/mainSlider';
+import popupMenu from './modules/popupMenu';
 
 //выбор клуба
 choiceClub();
@@ -22,3 +23,5 @@ fixedGift();
 mainSlider();
 
 wrapper();
+
+popupMenu();
