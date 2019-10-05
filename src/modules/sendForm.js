@@ -6,6 +6,5 @@ const sendForm = () => {
     bannerForm = document.getElementById('banner-form'),
     statusMessage = document.createElement('div');
     statusMessage.style.cssText = 'font-size: 2rem';
-
 };
 export default sendForm;

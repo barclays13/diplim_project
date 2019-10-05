@@ -7,6 +7,8 @@ import fixedGift from './modules/fixedGift';
 import mainSlider from './modules/mainSlider';
 import scrollDocument from './modules/scrollDocument';
 import popupMenu from './modules/popupMenu';
+import sliderGallery from './modules/sliderGallery';
+import calc from './modules/calc';
 
 //выбор клуба
 choiceClub();
@@ -20,3 +22,5 @@ fixedGift();
 mainSlider();
 popupMenu();
 scrollDocument();
+sliderGallery();
+calc();
