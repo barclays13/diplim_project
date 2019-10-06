@@ -1,5 +1,6 @@
 "use sctrict";
 
+console.log(0);
 import choiceClub from './modules/choiceClub';
 import call from './modules/call';
 //import sendForm from './modules/sendForm';
