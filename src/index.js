@@ -10,7 +10,7 @@ import scrollDocument from './modules/scrollDocument';
 import popupMenu from './modules/popupMenu';
 import sliderGallery from './modules/sliderGallery';
 import calc from './modules/calc';
-
+import servicesSlider from './modules/servicesSlider';
 
 //выбор клуба
 choiceClub();
@@ -18,12 +18,13 @@ choiceClub();
 call();
 //Подарок
 fixedGift();
-//слайдер в меню
-mainSlider();
 popupMenu();
 scrollDocument();
-sliderGallery();
 calc();
 //отправка данных
 sendForm();
 validationForms();
+servicesSlider();
+sliderGallery();
+//слайдер в меню
+mainSlider();
