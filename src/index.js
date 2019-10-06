@@ -14,8 +14,6 @@ import calc from './modules/calc';
 choiceClub();
 //Перезвоните мне
 call();
-//отправка данных
-//sendForm();
 //Подарок
 fixedGift();
 //слайдер в меню
@@ -24,3 +22,5 @@ popupMenu();
 scrollDocument();
 sliderGallery();
 calc();
+//отправка данных
+//sendForm();

@@ -35,6 +35,6 @@ const calc = () => {
             priceTotal.textContent = Math.ceil(+priceTotal.innerText * 0.7);
         } 
     });
-
+    
 };
 export default calc;

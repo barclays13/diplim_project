@@ -4,11 +4,12 @@ const call = () => {
     callbackForm = document.getElementById('callback_form'),
     freeVisitForm = document.getElementById('free_visit_form');
 
-    head.addEventListener("click", (event) => {
+    document.addEventListener("click", (event) => {
         const target = event.target;
+        console.log('target: ', target);
         if (target.classList.contains('close_icon') || target.classList.contains('overlay')){ 
-            callbackForm.removeAttribute("style");
-            freeVisitForm.removeAttribute("style");
+            callbackForm.style.display = "none";
+            freeVisitForm.style.display = "none";
         }
 
         if (target.classList.contains('open-popup')){
@@ -19,6 +20,7 @@ const call = () => {
             callbackForm.style.display = 'block';
         }
     });
+
 };
 
 export default call;
