@@ -17,7 +17,7 @@ const sendForm = () => {
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            
+
             postData(body)
                 .then(()=> {
                 elem.parentNode.remove();

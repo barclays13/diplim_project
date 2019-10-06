@@ -15,7 +15,7 @@ const call = () => {
             freeVisitForm.style.display = "block";
         }
 
-        if (target.classList.contains('callback-btn')){
+        if (target.matches('.head-main>.right>.call>.btn')){
             callbackForm.style.display = 'block';
         }
     });
