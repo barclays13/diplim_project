@@ -1,125 +1,47 @@
-
 const calc = () => {
-    const cards = document.querySelector('#cards'),
-    cardOrder = cards.querySelector('#card_order'),
-    clubsInput = cards.querySelectorAll('.club>input'),
-    priceTotal = cards.querySelector('#price-total'),
-    priceInput = cards.querySelector('.price-message>input');
+    const cardOrder = document.querySelector('#card_order'),
+    priceTotal = document.querySelector('.price-message>input'),
+    showPrice = document.querySelector('#price-total');
 
-
-
-
-    cardOrder.addEventListener('change', (event) => {
-        let total,
-        promoCode;
-        const target = event.target;
-
-
-        if (target.matches('#m1') && clubsInput[0].hasAttribute('checked')) {
-            total = 1999;
-            target.classList.toggle('active');
-        } 
-        if (target.matches('#m2') && clubsInput[0].hasAttribute('checked')) {
-            total = 9900;
-            target.classList.toggle('active');
-        } 
-        if (target.matches('#m3') && clubsInput[0].hasAttribute('checked')) {
-            total = 13900;
-            target.classList.toggle('active');
-        } 
-        if (target.matches('#m4') && clubsInput[0].hasAttribute('checked')) {
-            total = 19900;
-            target.classList.toggle('active');
-        } 
-        if (target.matches('#m1') && clubsInput[1].hasAttribute('checked')) {
-            total = 2999;
-            target.classList.toggle('active');
-        } 
-        if (target.matches('#m2') && clubsInput[1].hasAttribute('checked')) {
-            total = 14990;
-            target.classList.toggle('active');
-        } 
-        if (target.matches('#m3') && clubsInput[1].hasAttribute('checked')) {
-            total = 21990;
-            target.classList.toggle('active');
-        } 
-        if (target.matches('#m4') && clubsInput[1].hasAttribute('checked')) {
-            total = 24990;
-            target.classList.toggle('active');
-        } 
-
-        if ( priceInput.value != "ТЕЛО2019" ){
-            promoCode = 1;
-        } else {
-            promoCode = 0.7;
-        }
-
-        priceTotal.textContent = total * promoCode;
-    });
-
-
-
-
-/*
-    cardOrder.addEventListener('change', (event) => {
-        const target = event.target;
-        if (target.matches('#card_leto_mozaika')){
-            clubsInput[1].removeAttribute('checked');
-            clubsInput[0].setAttribute('checked','');
-
-
-        } else if (target.matches('#card_leto_schelkovo')) {
-            clubsInput[0].removeAttribute('checked');
-            clubsInput[1].setAttribute('checked','');
-
-        }
-        
-        if (target.matches('input') || target.matches('label')){
-            countSum(target);
-        }
-
-    });
-
-    const countSum = (target) => {
-
-        let total = 0,
-
-        if (target.matches('#m1') && clubsInput[0].hasAttribute('checked')) {
-            total = 1999;
-        } 
-        if (target.matches('#m2') && clubsInput[0].hasAttribute('checked')) {
-            total = 9900;
-        } 
-        if (target.matches('#m3') && clubsInput[0].hasAttribute('checked')) {
-            total = 13900;
-        } 
-        if (target.matches('#m4') && clubsInput[0].hasAttribute('checked')) {
-            total = 19900;
-        } 
-        if (target.matches('#m1') && clubsInput[1].hasAttribute('checked')) {
-            total = 2999;
-        } 
-        if (target.matches('#m2') && clubsInput[1].hasAttribute('checked')) {
-            total = 14990;
-        } 
-        if (target.matches('#m3') && clubsInput[1].hasAttribute('checked')) {
-            total = 21990;
-        } 
-        if (target.matches('#m4') && clubsInput[1].hasAttribute('checked')) {
-            total = 24990;
-        } 
-
-        if ( priceInput.value != "ТЕЛО2019" ){
-            promoCode = 1;
-        } else {
-            promoCode = 0.7;
-        }
-
-        if (total &&  promoCode){
-            priceTotal.textContent = total * promoCode;
-        }
-
+    const prices = {
+        mozaika: [{period:1, price:1999},{period:6, price:9900}, {period:9, price:13900},{period:12, price:19900}],
+        schelkovo: [{period:1, price:2999},{period:6, price:14990}, {period:9, price:21990},{period:12, price:24990}]
     };
-*/
+
+    cardOrder.addEventListener('change', (event) => {
+        const target = event.target;
+        if (target.matches('.time>input')){
+            selectPeriod(target);
+        }
+        if (target.matches('.club>input')){
+            selectPlace(target);
+        }
+    });
+
+    let selectedPlace = "mozaika";
+    const selectPlace = (event) => {
+        selectedPlace =  event.value;
+        invalidatePrice();
+    };
+
+    let selectedPeriod = 1;
+    const selectPeriod = (event) => {
+       selectedPeriod =  event.value;
+      invalidatePrice();
+    };
+
+    const invalidatePrice = (text)=> {
+        let discount;
+        const placePrices = prices[selectedPlace];  
+        const priceEl =  placePrices.find( price => price.period == selectedPeriod);
+
+        if ( priceTotal.value != text ){
+          discount = 1;
+        } else {
+          discount = 0.7;
+        }   
+
+        showPrice.textContent = Math.ceil(priceEl.price * discount);
+    };
 };
 export default calc;

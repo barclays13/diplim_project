@@ -7,12 +7,17 @@ const validationForms = () => {
         });
     });
     
-    document.getElementsByName('phone').forEach((element) => {
-        element.addEventListener('input', () => {
-            console.log(1);
-            element.value = element.value.replace(/[^+0-9]/, '');
-            //element.value = element.value.replace(/[^\+375[0-9+]*]/, '');
-        });
-    });
+
 };
 export default validationForms;
+
+//\+375[0-9]{9}$
+    /*
+    document.getElementsByName('phone').forEach((element) => {
+        element.addEventListener('input', () => {
+            console.log(2);
+            element.value = element.value.replace(/[^375]{3}/, '');
+            //element.value = element.value.replace(/+375[0-9+]/, '');
+        });
+    });
+    */
