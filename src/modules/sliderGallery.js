@@ -49,6 +49,14 @@ const sliderGallery = () => {
 
     };
 
+    const prevSlid = document.createElement('div');
+    prevSlid.classList.add('prev');
+    gallerySlider.before(prevSlid);
+
+    const nextSlid = document.createElement('div');
+    nextSlid.classList.add('next');
+    gallerySlider.after(nextSlid);
+
     startSlide();
 };
 export default sliderGallery;
