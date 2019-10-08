@@ -1,4 +1,5 @@
 const popupMenu = () => {
+    
     const topMenu = document.querySelector('.top-menu'),
     btnTopMenu = topMenu.querySelector('img'),
     popupMenu = document.querySelector('.popup-menu'),
