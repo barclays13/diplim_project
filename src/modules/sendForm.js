@@ -3,29 +3,97 @@ const sendForm = () => {
     loadMessage = 'Идет отправка...',
     successMessasge = 'Запрос отправлен!',
     consentMessage = 'Необходимо подвердить согласие!',
+    chooseClubMessage = 'Необходимо выбрать клуб!',
     forms = document.querySelectorAll('.form-content>form'),
     bannerForm = document.querySelector('#banner-form'),
     thanks = document.querySelector('#thanks'),
-    checkBannerForm = document.querySelector('#check1');
-    /*
-    //чек баннер форм
-    checkBannerForm.addEventListener('change', (event) => {
-        const target = event.target;
-        console.log('1',target.name);
-        if ( target.name == "checked"){
-            target.setAttribute("name", "noChecked");
-            console.log('2',target.name);
-            return;
+    checkBannerForm = document.querySelector('#check1'),
+    footerForm = document.querySelector('#footer_form'),
+    clubsFooter = document.querySelectorAll('.choose-club>.club>input'),
+    cardOrder = document.querySelector('#card_order'),
+    cardCheck = document.querySelector('#card_check');
+
+
+    //cardForm
+    cardOrder.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const statusMessage = document.createElement('div');
+        statusMessage.style.cssText = 'color:black; font-size: 2rem';
+        cardOrder.parentNode.append(statusMessage);
+
+        if( !cardCheck.checked){
+
+            if ( statusMessage.previousSibling.textContent == 'Необходимо подвердить согласие!' || statusMessage.previousSibling.name == 'check'){
+                statusMessage.name = 'check';
+                return;
+            } else {
+                statusMessage.style.cssText = 'color:red; font-size: 1rem';
+                statusMessage.textContent = consentMessage;
+                statusMessage.name = 'check';
+                return;
+            }
         }
-        if (target.name == "noChecked"){
-            target.setAttribute("name", "checked");
-            console.log('3',target.name);
-            return;
-        } 
+        statusMessage.textContent = loadMessage;
+        const formData = new FormData(cardOrder);
+        let body = {};
+        formData.forEach((val, key) => {
+            body[key] = val;
+        });
 
+        postData(body)
+            .then(()=> {
+
+            statusMessage.textContent = successMessasge;
+            const formInput = cardOrder.querySelectorAll('input').forEach((cardOrder)=> cardOrder.value = '');
+            })
+            .catch((error) => {
+            statusMessage.textContent = errorMessage;
+            console.error(error);
+            });
     });
-    */
 
+    //footerForm
+    footerForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const statusMessage = document.createElement('div');
+        statusMessage.style.cssText = 'color:white; font-size: 2rem';
+        footerForm.append(statusMessage);
+
+        if (!clubsFooter[0].checked && !clubsFooter[1].checked){
+            statusMessage.style.cssText = 'color:red; font-size: 1rem';
+            if ( statusMessage.previousSibling.textContent == 'Необходимо выбрать клуб!' || statusMessage.previousSibling.name == 'checkbox'){
+                statusMessage.name = 'checkbox';
+                return;
+            } else {
+                statusMessage.textContent = chooseClubMessage;
+                statusMessage.name = 'checkbox';
+                return;
+            }
+        }
+        statusMessage.textContent = loadMessage;
+        const target = event.target;
+        const formData = new FormData(footerForm);
+        let body = {};
+        formData.forEach((val, key) => {
+            body[key] = val;
+        });
+    
+        postData(body)
+            .then(()=> {
+
+                statusMessage.textContent = successMessasge;
+                thanks.style.display = 'block';
+                const formInput = footerForm.querySelectorAll('input').forEach((footerForm)=> footerForm.value = '');
+            })
+            .catch((error) => {
+                footerForm.parentNode.remove();
+                statusMessage.textContent = errorMessage;
+                console.error(error);
+            });
+        
+    });
+
+    //баннер форм
     bannerForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const statusMessage = document.createElement('div');
@@ -64,11 +132,6 @@ const sendForm = () => {
                 statusMessage.textContent = errorMessage;
                 console.error(error);
             });
-        
-
-      
-        
-
     });
 
     // модальные окна
