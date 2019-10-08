@@ -26,7 +26,6 @@ const sendForm = () => {
     });
     */
 
-
     bannerForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const statusMessage = document.createElement('div');
