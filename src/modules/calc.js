@@ -44,7 +44,6 @@ const calc = () => {
         } else {
           discount = 0.7;
         }   
-
         showPrice.textContent = Math.ceil(priceEl.price * discount);
     };
 };

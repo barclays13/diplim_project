@@ -10,7 +10,6 @@ const mainSlider = () => {
             currentSlide = 0;
         } 
         slide[currentSlide].style.display = 'flex';
-
     };
     setInterval(autoPlay, 3000);
 };

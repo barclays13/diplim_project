@@ -5,37 +5,56 @@ const servicesSlider = () => {
     next = document.getElementById('services-right');
 
 
-
-
+    let firstElement = 0;
+    let lastElement = 4;
+    let activeSlide = [0,1,2,3,4];
 
     const nextSlide = () => {
-        let arrActivSlide = [];
-        console.log('1',arrActivSlide);
-        slides.forEach((elem,index) => {
-            if (elem.classList.contains('active')){
-                arrActivSlide.push(index);      
-            }
+
+        if ( lastElement === 9 ){
+            lastElement = 0;
+        } else {
+            lastElement++;
+        }
+
+        activeSlide.shift();
+        activeSlide.push(lastElement);
+        slides.forEach( elem => {
+            elem.classList.remove('active');
         });
-        console.log('2',arrActivSlide);
-        
-        slides[arrActivSlide[arrActivSlide.length-1] + 1].classList.add('active');
-        
-        slides[arrActivSlide[0]].classList.remove('active');
-        
+
+        slides.forEach((elem,index) => {
+            
+            activeSlide.forEach( value => {
+               
+                if (value == index){                    
+                    elem.classList.add('active');
+                }
+            })
+        })
     };
 
     const prevSlide = () => {
-        let arrActivSlide = [];
-        console.log('1',arrActivSlide);
-        slides.forEach((elem,index) => {
-            if (elem.classList.contains('active')){
-                arrActivSlide.push(index);      
-            }
-        });
-        console.log('2',arrActivSlide);
+        console.log('prev');
+        if ( firstElement === 0 ){
+            firstElement = 9;
+        } else {
+            firstElement--;
+        }
+
+        activeSlide.pop();
+        activeSlide.unshift(firstElement);
         
-        slides[arrActivSlide[arrActivSlide.length-1]].classList.remove('active');
-        slides[arrActivSlide[0]-1].classList.add('active');
+        slides.forEach( elem => {
+            elem.classList.remove('active');
+        });
+        slides.forEach((elem,index) => {
+            activeSlide.forEach( value => {
+                if (value == index){
+                    elem.classList.add('active');
+                }
+            })
+        })
         
     };
 
@@ -44,22 +63,16 @@ const servicesSlider = () => {
         const target = event.target;
         event.preventDefault();
 
-        if (!target.matches('#services-right, #services-left') )
-        {
+        if (!target.matches('#services-right, #services-left')){
             return;
         }
-
         if (target.matches('#services-right')){
-
-                nextSlide();
+            nextSlide();
         }
-
         if (target.matches('#services-left')){
             prevSlide();
         }
-
-    });
-    
+    });   
 };
 
 export default servicesSlider;

@@ -4,20 +4,7 @@ const sliderGallery = () => {
     btn = document.querySelectorAll('.gallery-btn'),
     dots = document.querySelectorAll('.dot');
 
-    /*gallerySlider.insertAdjacentHTML("beforeend", `<ul class="slider-dots"></ul>`);
-    const galleryoDots = document.createElement('ul');
-    gallerySlider.appendChild(galleryoDots);
-    galleryoDots.classList.add('gallery-dots');
-
-    for (let i = 0; i < slides.length ; i++ ){
-        if ( i === 0){
-            galleryoDots.insertAdjacentHTML("afterbegin", `<li class="dot dot-active"></li>`);
-        } if ( i > 0){
-            galleryoDots.insertAdjacentHTML("beforeend", `<li class="dot"></li>`);
-        }
-    }
-    */
-
+    
     slides.forEach( (slide, index) => {
         if (index == 0) {
             slide.style.display = 'block';
@@ -31,6 +18,7 @@ const sliderGallery = () => {
     };
 
     const nextSlide = (elem, index) => {
+        
         elem[index].style.display = 'block';
     };
 
@@ -41,7 +29,6 @@ const sliderGallery = () => {
     const nextDot =(elem, index, strClass) => {
         elem[index].classList.add(strClass);
     };
-
 
     let currentSlide = 0,
     interval = 0;
@@ -64,13 +51,9 @@ const sliderGallery = () => {
         clearInterval(interval);
     };
 
-
-
     gallerySlider.addEventListener('click', (event) => {
         let target = event.target;
-        
         event.preventDefault();
-
 
         if(!target.matches('.gallery-btn, .dot')){ //проверяем клики по кнопкам prev and next and dot
             return;
@@ -78,7 +61,6 @@ const sliderGallery = () => {
 
         prevSlide(slides,currentSlide); //у текущего слайда убираем акт классы
         prevDot(dots,currentSlide, 'dot-active');//у текущей точки убираем акт классы
-
 
         if (target.matches('#arrow-right')){ // клик некст добавляем +1 слайд
             currentSlide++;
@@ -96,7 +78,6 @@ const sliderGallery = () => {
         } if (currentSlide < 0){ // проверка есди 1 слайд и жмем прев то переход к посл
             currentSlide = slides.length -1 ;
         } 
-
         nextSlide(slides,currentSlide); // присв. акт классы
         nextDot(dots,currentSlide, 'dot-active');
 
@@ -115,8 +96,6 @@ const sliderGallery = () => {
             startSlide();
         }
     });
-
-
 
     const prevSlid = document.createElement('div');
     prevSlid.classList.add('prev');
